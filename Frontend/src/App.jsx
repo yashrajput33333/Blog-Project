@@ -14,7 +14,7 @@ function App() {
     useEffect(() => {
         const fetchCurrentUser = async () => {
             try {
-                const response = await fetch("/api/v1/users/current-user", {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/users/current-user`, {
                     method: "GET",
                     credentials: "include", // ✅ Ensures cookies are sent
                 });
