@@ -22,20 +22,6 @@ function AllPosts() {
         }
     };
 
-    const handlePostAdded = () => {
-        toast.dismiss();
-        toast.success("Post added successfully! 🎉", {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-        });
-
-        fetchPosts();
-    };
-
     return (
         <div className="w-full py-8">
             <Container>
