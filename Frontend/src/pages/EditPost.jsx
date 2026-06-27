@@ -31,59 +31,13 @@ function EditPost() {
             });
     }, [slug, navigate]);
 
-    // Handle Post Update
-    const handlePostUpdate = async (updatedPost) => {
-        try {
-            const response = await axios.put(
-                `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/posts/slug/${slug}`,
-                {
-                    ...updatedPost,
-                    status: updatedPost.status === "active", // ✅ Ensure correct boolean conversion
-                },
-                { withCredentials: true }
-            );
-
-            if (response.data.success) {
-                toast.dismiss();
-                toast.success("Post updated successfully! 🎉", { autoClose: 2000 });
-                navigate(`/post/${slug}`);
-            }
-        } catch (error) {
-            console.error("Error updating post:", error);
-            toast.error("Failed to update post!", { autoClose: 2000 });
-        }
-    };
-
-    // Handle Post Deletion
-    const handlePostDelete = async () => {
-        if (!window.confirm("Are you sure you want to delete this post?")) return;
-
-        try {
-            const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/v1/users/posts/slug/${slug}`, {
-                withCredentials: true,
-            });
-
-            if (response.data.success) {
-                toast.dismiss();
-                toast.success("Post deleted successfully! 🗑️", { autoClose: 2000 });
-                navigate("/"); // Redirect to homepage after deletion
-            }
-        } catch (error) {
-            console.error("Error deleting post:", error);
-            toast.error("Failed to delete post!", { autoClose: 2000 });
-        }
-    };
+    
 
     return post ? (
         <div className="py-8">
             <Container>
-                <PostForm post={post} onSubmit={handlePostUpdate} />
-                <button
-                    onClick={handlePostDelete}
-                    className="mt-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 transition"
-                >
-                    Delete Post
-                </button>
+                <PostForm post={post} />
+                
             </Container>
         </div>
     ) : null;
