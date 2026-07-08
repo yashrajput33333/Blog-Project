@@ -29,12 +29,6 @@ const userSchema = new mongoose.Schema(
             type: String, // cloudinary url
             default: ""
         },
-        watchHistory: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "Post"
-            }
-        ],
         password: {
             type: String,
             required: [true, 'Password is required']
